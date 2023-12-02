@@ -54,7 +54,6 @@ class _ReelScreenState extends State<ReelScreen> {
     //                 ),
     //               ]));
     //   await Future.delayed(Duration(seconds: 2));
-    //   setState(() {});
     // });
     super.initState();
   }

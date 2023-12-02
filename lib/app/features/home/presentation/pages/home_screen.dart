@@ -101,57 +101,6 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const SizedBox(height: 20),
                 const HomeScreenAppBar(),
-                // const SizedBox(height: 20),
-                // Container(
-                //   padding: const EdgeInsets.all(6),
-                //   margin: const EdgeInsets.symmetric(horizontal: 16),
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(90),
-                //     // Border radius of 90px
-                //     gradient: const LinearGradient(
-                //       begin: Alignment.centerLeft,
-                //       end: Alignment.centerRight,
-                //       colors: [
-                //         Color.fromRGBO(34, 34, 34, 0.80),
-                //         Color.fromRGBO(34, 34, 34, 0.16),
-                //       ],
-                //     ),
-                //   ),
-                //   child: CustomTabBar(
-                //     tabBarController: tabBarController,
-                //     height: 35,
-                //     itemCount: pageCount,
-                //     builder: (context, index) => TabBarItem(
-                //         transform: ColorsTransform(
-                //             highlightColor: Colors.black,
-                //             normalColor: Colors.white38,
-                //             builder: (context, color) {
-                //               return Container(
-                //                 padding:
-                //                     const EdgeInsets.fromLTRB(10, 2, 10, 2),
-                //                 alignment: Alignment.center,
-                //                 constraints: const BoxConstraints(minWidth: 80),
-                //                 child: Center(
-                //                   child: Text(
-                //                     widget.tabs[index],
-                //                     style:
-                //                         TextStyle(fontSize: 14, color: color),
-                //                   ),
-                //                 ),
-                //               );
-                //             }),
-                //         index: index),
-                //     indicator: RoundIndicator(
-                //       color: CustomColors.primary,
-                //       top: 2.5,
-                //       bottom: 2.5,
-                //       left: 2.5,
-                //       right: 2.5,
-                //       radius: BorderRadius.circular(15),
-                //     ),
-                //     pageController: controller,
-                //   ),
-                // ),
                 const SizedBox(height: 20),
                 Expanded(
                     child: PageView.builder(

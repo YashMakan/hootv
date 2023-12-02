@@ -5,4 +5,6 @@ Future<void> injectUseCases() async {
   sl.registerSingleton(FetchNewOnMoviesUseCase(sl()));
   sl.registerSingleton(FetchTrendingTvShowsUseCase(sl()));
   sl.registerSingleton(FetchReelsUseCase(sl()));
+  sl.registerSingleton(FetchTrendingMediaUseCase(sl()));
+  sl.registerSingleton(SearchForMediasUseCase(sl()));
 }

@@ -4,16 +4,17 @@ import 'package:hootv/app/shared/config/theme/theme.dart';
 class SectionHeadingWidget extends StatelessWidget {
   final String title;
   final Widget child;
+  final EdgeInsets? padding;
 
   const SectionHeadingWidget(
-      {super.key, required this.title, required this.child});
+      {super.key, required this.title, required this.child, this.padding});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 20.0),
+          padding: padding ?? const EdgeInsets.only(left: 20.0),
           child: Row(
             children: [
               Text(

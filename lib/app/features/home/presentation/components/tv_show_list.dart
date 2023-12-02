@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hootv/app/shared/core/models/tv_show_model.dart';
 
-import 'media_vertical_card.dart';
+import '../../../../shared/core/components/media_vertical_card.dart';
 
 class TvShowList extends StatelessWidget {
   final List<TvShowModel>? shows;
@@ -20,7 +20,7 @@ class TvShowList extends StatelessWidget {
           children: isLoading
               ? List.generate(4, (index) => const MediaVerticalCard())
               : List.generate(shows!.length,
-                  (index) => MediaVerticalCard(show: shows![index])),
+                  (index) => MediaVerticalCard(media: shows![index])),
         ),
       ),
     );

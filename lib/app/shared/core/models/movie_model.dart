@@ -1,97 +1,50 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'media_model.dart';
 
 part 'movie_model.g.dart';
 
 @JsonSerializable()
-class MovieModel extends Equatable {
-  @JsonKey(name: 'poster_path')
-  final String? posterPath;
-
-  @JsonKey(name: 'title')
-  final String title;
-
-  @JsonKey(name: 'id')
-  final int id;
-
-  @JsonKey(name: 'adult')
-  final bool adult;
-
-  @JsonKey(name: 'backdrop_path')
-  final String? backdropPath;
-
-  @JsonKey(name: 'genre_ids')
-  final List<int>? genreIds;
-
-  @JsonKey(name: 'original_language')
-  final String? originalLanguage;
-
-  @JsonKey(name: 'original_title')
-  final String? originalTitle;
-
-  @JsonKey(name: 'overview')
-  final String? overview;
-
-  @JsonKey(name: 'popularity')
-  final double? popularity;
-
-  @JsonKey(name: 'release_date')
-  final String? releaseDate;
-
-  @JsonKey(name: 'video')
-  final bool video;
-
-  @JsonKey(name: 'vote_average')
-  final double? voteAverage;
-
-  @JsonKey(name: 'vote_count')
-  final int? voteCount;
-
+class MovieModel extends MediaModel {
   const MovieModel({
-    this.posterPath,
-    required this.title,
-    required this.id,
-    required this.adult,
-    this.backdropPath,
-    this.genreIds,
-    this.originalLanguage,
-    this.originalTitle,
-    this.overview,
-    this.popularity,
-    this.releaseDate,
-    required this.video,
-    this.voteAverage,
-    this.voteCount,
-  });
+    bool? adult,
+    String? backdropPath,
+    required int id,
+    String? title,
+    String? originalLanguage,
+    String? originalTitle,
+    String? overview,
+    String? posterPath,
+    String? mediaType,
+    List<int>? genreIds,
+    double? popularity,
+    String? releaseDate,
+    bool? video,
+    double? voteAverage,
+    int? voteCount,
+  }) : super(
+          adult: adult,
+          backdropPath: backdropPath,
+          id: id,
+          title: title,
+          originalLanguage: originalLanguage,
+          originalTitle: originalTitle,
+          overview: overview,
+          posterPath: posterPath,
+          mediaType: mediaType,
+          genreIds: genreIds,
+          popularity: popularity,
+          releaseDate: releaseDate,
+          video: video,
+          voteAverage: voteAverage,
+          voteCount: voteCount,
+        );
 
   factory MovieModel.fromJson(Map<String, dynamic> json) =>
       _$MovieModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MovieModelToJson(this);
 
-  String? get posterPathImage => posterPath != null
-      ? 'https://image.tmdb.org/t/p/w500${posterPath!}'
-      : null;
-
-  String? get backdropPathImage => backdropPath != null
-      ? 'https://image.tmdb.org/t/p/w500${backdropPath!}'
-      : null;
-
   @override
-  List<Object?> get props => [
-        posterPath,
-        title,
-        id,
-        adult,
-        backdropPath,
-        genreIds,
-        originalLanguage,
-        originalTitle,
-        overview,
-        popularity,
-        releaseDate,
-        video,
-        voteAverage,
-        voteCount,
-      ];
+  List<Object?> get props => super.props..add(releaseDate);
 }

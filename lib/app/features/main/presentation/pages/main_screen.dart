@@ -61,7 +61,9 @@ class _MainScreenState extends State<MainScreen> {
         const SizedBox(),
         const ReelScreen(),
         const SizedBox(),
-        const DiscoverScreen(), //const DiscoverScreen()
+        DiscoverScreen(
+          scrollController: homeScrollControllers[currentHomeIndex],
+        ),
       ][currentBottomTabIndex],
     );
   }

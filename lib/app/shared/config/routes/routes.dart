@@ -15,7 +15,7 @@ class AppRoutes {
 
 class NavigationManager {
   static final Map<String, WidgetBuilder> appRoutes = {
-    AppRoutes.initial: (context) => const DiscoverScreen(),
+    AppRoutes.initial: (context) => const MainScreen(),
     AppRoutes.splashScreen: (context) => const SplashScreen(),
     AppRoutes.loginScreen: (context) => const LoginScreen(),
     AppRoutes.otpScreen: (context) => const OtpScreen(),

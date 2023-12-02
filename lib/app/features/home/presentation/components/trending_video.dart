@@ -37,7 +37,7 @@ class TrendingVideo extends StatelessWidget {
             const SizedBox(height: 6),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 2.0),
-              child: Text(media.title,
+              child: Text(media.title ?? '',
                   style: context.bodyMedium?.copyWith(color: Colors.white),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis),

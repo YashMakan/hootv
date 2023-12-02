@@ -7,4 +7,7 @@ Future<void> injectBlocs() async {
   sl.registerSingleton(HomeTvShowsBloc(sl()));
 
   sl.registerSingleton(ReelBloc(sl()));
+
+  sl.registerSingleton(DiscoverBloc(sl()));
+  sl.registerSingleton(DiscoverSearchBloc(sl()));
 }

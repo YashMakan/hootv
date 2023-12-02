@@ -20,6 +20,7 @@ class ContinueWatchingCard extends StatelessWidget {
       height: 180,
       margin: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
+        color: Colors.grey.withOpacity(0.3),
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
                   image: CachedNetworkImageProvider(movie?.backdropPathImage ?? ''),

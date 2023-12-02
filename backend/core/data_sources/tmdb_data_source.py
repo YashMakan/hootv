@@ -41,5 +41,17 @@ class TmdbDataSource:
             # params={'api_key': api_key, 'include_null_first_air_dates': 'false', 'language': 'en-US', 'page': '1',
             #         'sort_by': 'popularity.asc'},
         )
-        print(response)
+        results = list(map(lambda x: dict(x), response['results']))
+        return list(filter(lambda item: item.get("media_type") != "person", results))
+
+    def fetch_all_trending_media(self, time_window='day'):
+        response = self.api.request(f'trending/all/{time_window}', method='GET',
+                                    params={'api_key': api_key, 'language': 'en-US'})
         return list(map(lambda x: dict(x), response['results']))
+
+    def search_media(self, query: str):
+        response = self.api.request(f'search/multi', method='GET',
+                                    params={'api_key': api_key, 'language': 'en-US', 'query': query.replace(' ', '%20')})
+
+        results = list(map(lambda x: dict(x), response['results']))
+        return list(filter(lambda item: item.get("media_type") != "person", results))

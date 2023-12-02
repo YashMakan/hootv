@@ -67,7 +67,6 @@ class _ReelPageWidgetState extends State<ReelPageWidget> {
   //     showControls: false,
   //     looping: false,
   //   );
-  //   setState(() {});
   //   _videoPlayerController.addListener(() {
   //     if (_videoPlayerController.value.position ==
   //         _videoPlayerController.value.duration) {
@@ -97,13 +96,13 @@ class _ReelPageWidgetState extends State<ReelPageWidget> {
                 height: MediaQuery.of(context).size.height,
                 child: GestureDetector(
                   onDoubleTap: () {
-                    if (!widget.item.isLiked) {
-                      _liked = true;
-                      if (widget.onLike != null) {
-                        widget.onLike!(widget.item.url);
-                      }
-                      setState(() {});
-                    }
+                    // if (!widget.item.isLiked) {
+                    //   _liked = true;
+                    //   if (widget.onLike != null) {
+                    //     widget.onLike!(widget.item.url);
+                    //   }
+                    //
+                    // }
                   },
                   child: YoutubePlayer(
                     controller: controller,

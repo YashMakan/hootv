@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:hootv/app/shared/config/assets/asset.dart';
 import 'package:hootv/app/shared/config/constants/extensions.dart';
 import 'package:hootv/app/shared/config/theme/theme.dart';
-import 'package:hootv/app/shared/core/models/tv_show_model.dart';
+import 'package:hootv/app/shared/core/models/media_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MediaVerticalCard extends StatelessWidget {
-  final TvShowModel? show;
+  final MediaModel? media;
 
-  const MediaVerticalCard({super.key, this.show});
+  const MediaVerticalCard({super.key, this.media});
 
-  bool get isLoading => show == null;
+  bool get isLoading => media == null;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,10 @@ class MediaVerticalCard extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-                  image: CachedNetworkImageProvider(show?.posterPathImage ?? ''),
+                  image:
+                      CachedNetworkImageProvider(media?.posterPathImage ?? ''),
                   fit: BoxFit.fill)
-              .ifNotNull(show?.posterPathImage)),
+              .ifNotNull(media?.posterPathImage)),
       child: Stack(
         children: [
           Align(
@@ -37,7 +38,7 @@ class MediaVerticalCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                show?.title ?? '',
+                media?.name ?? media?.title ?? '',
                 style: context.titleSmall?.copyWith(
                     color: Colors.white, fontWeight: FontWeight.w600),
               ),
