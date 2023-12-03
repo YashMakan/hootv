@@ -29,6 +29,10 @@ class TmdbDataSource:
         response = self.api.request(f'movie/{movie_id}', method='GET', params={'api_key': api_key})
         return dict(response)
 
+    def fetch_movie_videos(self, movie_id: int):
+        response = self.api.request(f'movie/{movie_id}/videos', method='GET', params={'api_key': api_key})
+        return dict(response)
+
     def fetch_trending_tv_shows(self):
         response = self.api.request(
             'trending/tv/week',

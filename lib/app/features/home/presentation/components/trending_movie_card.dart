@@ -5,10 +5,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hootv/app/shared/config/assets/asset.dart';
 import 'package:hootv/app/shared/config/constants/extensions.dart';
+import 'package:hootv/app/shared/config/routes/routes.dart';
 import 'package:hootv/app/shared/config/theme/theme.dart';
 import 'package:hootv/app/shared/core/models/movie_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:shimmer/shimmer.dart';
 
 class TrendingMovieCard extends StatelessWidget {
   final MovieModel? movie;
@@ -19,11 +19,29 @@ class TrendingMovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        if (movie != null) {
+          Navigator.pushNamed(context, AppRoutes.mediaInfoScreen,
+              arguments: movie!);
+        }
+      },
+      child: movie != null
+          ? Hero(
+              tag: 'main-image-${movie!.id}',
+              child: cardWidget(context),
+            )
+          : cardWidget(context),
+    );
+  }
+
+  Widget cardWidget(BuildContext context) {
     return Container(
       width: 75.w,
       decoration: BoxDecoration(
           image: DecorationImage(
-                  image: CachedNetworkImageProvider(movie?.posterPathImage ?? ''),
+                  image:
+                      CachedNetworkImageProvider(movie?.posterPathImage ?? ''),
                   fit: BoxFit.fill)
               .ifNotNull(movie?.posterPathImage),
           borderRadius: BorderRadius.circular(8)),
@@ -151,7 +169,7 @@ class TrendingMovieCard extends StatelessWidget {
     ).toShimmer(isLoading);
   }
 
-  miniProfile(angle, image) {
+  Widget miniProfile(angle, image) {
     return Transform.rotate(
       angle: pi * angle,
       child: Container(

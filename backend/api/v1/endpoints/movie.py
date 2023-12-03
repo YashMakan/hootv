@@ -1,8 +1,5 @@
-from typing import Optional
-
 from fastapi import APIRouter
 
-from core.data_sources.ezflix_data_source import EzflixDaraSource
 from core.data_sources.tmdb_data_source import TmdbDataSource
 
 router = APIRouter(prefix='/movies')
@@ -20,7 +17,12 @@ async def movie_trending():
 async def movie_new():
     movies = movieSource().fetch_new_movies()
     return {"result": movies}
-#
+
+
+@router.get("/videos")
+async def fetch_movie_videos(movie_id: int):
+    videos = movieSource().fetch_movie_videos(movie_id)
+    return {"result": videos}
 #
 # @router.get("/categories")
 # async def movie_trending():

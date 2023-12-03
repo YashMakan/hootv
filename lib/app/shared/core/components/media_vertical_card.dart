@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hootv/app/shared/config/assets/asset.dart';
 import 'package:hootv/app/shared/config/constants/extensions.dart';
+import 'package:hootv/app/shared/config/routes/routes.dart';
 import 'package:hootv/app/shared/config/theme/theme.dart';
 import 'package:hootv/app/shared/core/models/media_model.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -15,6 +16,23 @@ class MediaVerticalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        if (media != null) {
+          Navigator.pushNamed(context, AppRoutes.mediaInfoScreen,
+              arguments: media!);
+        }
+      },
+      child: media != null
+          ? Hero(
+              tag: 'main-image-${media!.id}',
+              child: cardWidget(context),
+            )
+          : cardWidget(context),
+    );
+  }
+
+  Widget cardWidget(BuildContext context) {
     return Container(
       width: 50.w,
       height: 36.h,
