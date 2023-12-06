@@ -121,7 +121,6 @@ class _TorrentWebViewState extends State<TorrentWebView> {
     );
   }
 
-  // Inject JavaScript code to start downloading the torrent
   Future<void> _loadTorrent(String magnetLink) async {
     if (_webViewController != null) {
       await _webViewController!.evaluateJavascript(source: 'run("$magnetLink");');
