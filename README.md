@@ -20,6 +20,7 @@
 12. `Firebase` integration with Authentication(Google, Phone and Facebook)
 13. `WebView` integration using `inAppWebView`.
 14. `Shimmer` animations for every api component.
+15. live `TMDB API` integration
 
 ## ScreenShots
 
