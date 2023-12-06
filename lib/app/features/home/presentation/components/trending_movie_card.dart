@@ -26,12 +26,7 @@ class TrendingMovieCard extends StatelessWidget {
               arguments: movie!);
         }
       },
-      child: movie != null
-          ? Hero(
-              tag: 'main-image-${movie!.id}',
-              child: cardWidget(context),
-            )
-          : cardWidget(context),
+      child: cardWidget(context),
     );
   }
 

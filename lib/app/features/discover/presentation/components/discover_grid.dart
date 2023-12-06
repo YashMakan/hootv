@@ -62,12 +62,7 @@ class Tile extends StatelessWidget {
               arguments: media!);
         }
       },
-      child: media != null
-          ? Hero(
-              tag: 'main-image-${media!.id}',
-              child: cardWidget(context),
-            )
-          : cardWidget(context),
+      child: cardWidget(context),
     );
   }
 

@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hootv/app/features/media_info/presentation/components/cast_widget.dart';
 import 'package:hootv/app/features/media_info/presentation/components/more_like_this_widget.dart';
+import 'package:hootv/app/features/media_player/presentation/pages/media_player.dart';
 import 'package:hootv/app/shared/config/assets/asset.dart';
 import 'package:hootv/app/shared/config/constants/colors.dart';
 import 'package:hootv/app/shared/config/constants/extensions.dart';
@@ -30,101 +31,106 @@ class MediaInfoScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Hero(
-                  tag: 'main-image-${media.id}',
-                  child: Container(
-                    width: 100.w,
-                    height: 60.h,
-                    decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.3),
-                        image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: CachedNetworkImageProvider(
-                                    media.posterPathImage ?? ''))
-                            .ifNotNull(media.posterPathImage)),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            height: 20.h,
-                            width: 100.w,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
-                                    colors: [
-                                  Colors.transparent,
-                                  const Color(0xFF0D0D0D).withOpacity(0.3),
-                                  const Color(0xFF0D0D0D)
-                                ])),
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                Positioned(
-                                  bottom: -20,
-                                  left: 20,
-                                  child: Row(
-                                    children: [
-                                      ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.white,
-                                              padding: EdgeInsets.zero,
-                                              fixedSize:
-                                                  const Size.fromWidth(150),
-                                              foregroundColor: Colors.black),
-                                          child: Center(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                const Icon(
-                                                  Icons.play_arrow_rounded,
-                                                  size: 42,
-                                                ),
-                                                const SizedBox(width: 4),
-                                                Text(
-                                                  "Play Now",
-                                                  style: context.titleMedium,
-                                                )
-                                              ],
-                                            ),
-                                          )),
-                                      const SizedBox(width: 16),
-                                      ElevatedButton(
-                                          onPressed: () {},
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              elevation: 0,
-                                              foregroundColor: Colors.white,
-                                              padding: EdgeInsets.zero,
-                                              fixedSize:
-                                                  const Size.fromWidth(150),
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(30),
-                                                  side: const BorderSide(
-                                                      color: Colors.white))),
-                                          child: const Center(
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Icon(Icons.add),
-                                                Text("My List")
-                                              ],
-                                            ),
-                                          ))
-                                    ],
-                                  ),
+                Container(
+                  width: 100.w,
+                  height: 60.h,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.3),
+                      image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: CachedNetworkImageProvider(
+                                  media.posterPathImage ?? ''))
+                          .ifNotNull(media.posterPathImage)),
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Container(
+                          height: 20.h,
+                          width: 100.w,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [
+                                Colors.transparent,
+                                const Color(0xFF0D0D0D).withOpacity(0.3),
+                                const Color(0xFF0D0D0D)
+                              ])),
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Positioned(
+                                bottom: -20,
+                                left: 20,
+                                child: Row(
+                                  children: [
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const TorrentWebView(
+                                                          magnetLink:
+                                                              'https://webtorrent.io/torrents/sintel.torrent')));
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor: Colors.white,
+                                            padding: EdgeInsets.zero,
+                                            fixedSize:
+                                                const Size.fromWidth(150),
+                                            foregroundColor: Colors.black),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Icon(
+                                                Icons.play_arrow_rounded,
+                                                size: 42,
+                                              ),
+                                              const SizedBox(width: 4),
+                                              Text(
+                                                "Play Now",
+                                                style: context.titleMedium,
+                                              )
+                                            ],
+                                          ),
+                                        )),
+                                    const SizedBox(width: 16),
+                                    ElevatedButton(
+                                        onPressed: () {},
+                                        style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                Colors.transparent,
+                                            elevation: 0,
+                                            foregroundColor: Colors.white,
+                                            padding: EdgeInsets.zero,
+                                            fixedSize:
+                                                const Size.fromWidth(150),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
+                                                side: const BorderSide(
+                                                    color: Colors.white))),
+                                        child: const Center(
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(Icons.add),
+                                              Text("My List")
+                                            ],
+                                          ),
+                                        ))
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 const SizedBox(height: 20 + 32),
@@ -190,10 +196,8 @@ class MediaInfoScreen extends StatelessWidget {
                       const SizedBox(height: 24),
                       Text(
                         'Cast',
-                        style: context.headlineSmall?.ultra?.copyWith(
-                          color: Colors.white,
-                            letterSpacing: 1.4
-                        ),
+                        style: context.headlineSmall?.ultra
+                            ?.copyWith(color: Colors.white, letterSpacing: 1.4),
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
@@ -202,16 +206,14 @@ class MediaInfoScreen extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: 8,
-                          itemBuilder: (context, index) => CastWidget(),
+                          itemBuilder: (context, index) => const CastWidget(),
                         ),
                       ),
                       const SizedBox(height: 24),
                       Text(
                         'Trailer & more',
-                        style: context.headlineSmall?.ultra?.copyWith(
-                          color: Colors.white,
-                          letterSpacing: 1.4
-                        ),
+                        style: context.headlineSmall?.ultra
+                            ?.copyWith(color: Colors.white, letterSpacing: 1.4),
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
@@ -220,16 +222,14 @@ class MediaInfoScreen extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: 8,
-                          itemBuilder: (context, index) => MoreLikeThisWidget(),
+                          itemBuilder: (context, index) => const MoreLikeThisWidget(),
                         ),
                       ),
                       const SizedBox(height: 24),
                       Text(
                         'More like this',
-                        style: context.headlineSmall?.ultra?.copyWith(
-                          color: Colors.white,
-                            letterSpacing: 1.4
-                        ),
+                        style: context.headlineSmall?.ultra
+                            ?.copyWith(color: Colors.white, letterSpacing: 1.4),
                       ),
                       const SizedBox(height: 10),
                       SizedBox(
@@ -238,7 +238,7 @@ class MediaInfoScreen extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: 8,
-                          itemBuilder: (context, index) => MoreLikeThisWidget(),
+                          itemBuilder: (context, index) => const MoreLikeThisWidget(),
                         ),
                       ),
                       const SizedBox(height: 24),
