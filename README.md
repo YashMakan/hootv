@@ -50,18 +50,18 @@ COMING SOON
 .
 └── lib/
     ├── app/
-    │   ├── features/
+    │   ├── features/ {CLEAN ARCHITECTURE}
     │   │   ├── auth/
     │   │   ├── discover/
     │   │   │   ├── data/
     │   │   │   │   ├── data_sources/
     │   │   │   │   │   ├── discover_data_source.dart
     │   │   │   │   │   └── discover_data_source.g.dart
-    │   │   │   │   ├── models
+    │   │   │   │   ├── models/
     │   │   │   │   └── repository_impl/
     │   │   │   │       └── discover_repository_impl.dart
     │   │   │   ├── domain/
-    │   │   │   │   ├── entities
+    │   │   │   │   ├── entities/
     │   │   │   │   ├── repository/
     │   │   │   │   │   └── discover_repository.dart
     │   │   │   │   └── usecases/
@@ -83,198 +83,16 @@ COMING SOON
     │   │   │       │   ├── discover_search_area.dart
     │   │   │       │   └── story_view.dart
     │   │   │       └── pages/
-    │   │   │           ├── discover_screen.dart
-    │   │   │           └── discover_screen2.dart
+    │   │   │           └── discover_screen.dart
     │   │   ├── home/
-    │   │   │   ├── data/
-    │   │   │   │   ├── data_sources/
-    │   │   │   │   │   ├── home_data_source.dart
-    │   │   │   │   │   └── home_data_source.g.dart
-    │   │   │   │   ├── models/
-    │   │   │   │   │   └── trending_media.dart
-    │   │   │   │   └── repository_impl/
-    │   │   │   │       └── home_repository_impl.dart
-    │   │   │   ├── domain/
-    │   │   │   │   ├── entities
-    │   │   │   │   ├── repository/
-    │   │   │   │   │   └── home_repository.dart
-    │   │   │   │   └── usecases/
-    │   │   │   │       ├── fetch_new_on_movies_usecase.dart
-    │   │   │   │       ├── fetch_trending_movies_usecase.dart
-    │   │   │   │       └── fetch_trending_tv_shows_use_case.dart
-    │   │   │   └── presentation/
-    │   │   │       ├── blocs/
-    │   │   │       │   ├── home_continue_watching_bloc/
-    │   │   │       │   │   ├── bloc.dart
-    │   │   │       │   │   ├── events.dart
-    │   │   │       │   │   └── states.dart
-    │   │   │       │   ├── home_new_on_bloc/
-    │   │   │       │   │   ├── bloc.dart
-    │   │   │       │   │   ├── events.dart
-    │   │   │       │   │   └── states.dart
-    │   │   │       │   ├── home_trending_bloc/
-    │   │   │       │   │   ├── bloc.dart
-    │   │   │       │   │   ├── events.dart
-    │   │   │       │   │   └── states.dart
-    │   │   │       │   └── home_tv_shows_bloc/
-    │   │   │       │       ├── bloc.dart
-    │   │   │       │       ├── events.dart
-    │   │   │       │       └── states.dart
-    │   │   │       ├── components/
-    │   │   │       │   ├── continue_watching_card.dart
-    │   │   │       │   ├── continue_watching_list.dart
-    │   │   │       │   ├── home_screen_app_bar.dart
-    │   │   │       │   ├── new_on_hoo.dart
-    │   │   │       │   ├── trending_movie_card.dart
-    │   │   │       │   ├── trending_movie_list.dart
-    │   │   │       │   ├── trending_video.dart
-    │   │   │       │   └── tv_show_list.dart
-    │   │   │       └── pages/
-    │   │   │           └── home_screen.dart
     │   │   ├── main/
-    │   │   │   ├── data/
-    │   │   │   │   ├── data_sources
-    │   │   │   │   ├── models
-    │   │   │   │   └── repository_impl
-    │   │   │   ├── domain/
-    │   │   │   │   ├── entities
-    │   │   │   │   ├── repository
-    │   │   │   │   └── usecases
-    │   │   │   └── presentation/
-    │   │   │       ├── bloc
-    │   │   │       ├── components/
-    │   │   │       │   └── main_screen_bottom_nav_bar.dart
-    │   │   │       └── pages/
-    │   │   │           └── main_screen.dart
     │   │   ├── media_info/
-    │   │   │   ├── data/
-    │   │   │   │   ├── data_sources/
-    │   │   │   │   │   ├── media_info_data_source.dart
-    │   │   │   │   │   └── media_info_data_source.g.dart
-    │   │   │   │   ├── models/
-    │   │   │   │   │   ├── created_by.dart
-    │   │   │   │   │   ├── created_by.g.dart
-    │   │   │   │   │   ├── credits_model.dart
-    │   │   │   │   │   ├── credits_model.g.dart
-    │   │   │   │   │   ├── genre.dart
-    │   │   │   │   │   ├── genre.g.dart
-    │   │   │   │   │   ├── last_episode_to_air.dart
-    │   │   │   │   │   ├── last_episode_to_air.g.dart
-    │   │   │   │   │   ├── movie_info_model.dart
-    │   │   │   │   │   ├── movie_info_model.g.dart
-    │   │   │   │   │   ├── network.dart
-    │   │   │   │   │   ├── network.g.dart
-    │   │   │   │   │   ├── production_company.dart
-    │   │   │   │   │   ├── production_company.g.dart
-    │   │   │   │   │   ├── production_country.dart
-    │   │   │   │   │   ├── production_country.g.dart
-    │   │   │   │   │   ├── season.dart
-    │   │   │   │   │   ├── season.g.dart
-    │   │   │   │   │   ├── spoken_language.dart
-    │   │   │   │   │   ├── spoken_language.g.dart
-    │   │   │   │   │   ├── tv_show_info_model.dart
-    │   │   │   │   │   ├── tv_show_info_model.g.dart
-    │   │   │   │   │   ├── youtube_video_model.dart
-    │   │   │   │   │   └── youtube_video_model.g.dart
-    │   │   │   │   └── repository_impl/
-    │   │   │   │       └── media_info_repository_impl.dart
-    │   │   │   ├── domain/
-    │   │   │   │   ├── entities
-    │   │   │   │   ├── repository/
-    │   │   │   │   │   └── media_info_repository.dart
-    │   │   │   │   └── usecases/
-    │   │   │   │       ├── fetch_movie_credits_use_case.dart
-    │   │   │   │       ├── fetch_movie_info_use_case.dart
-    │   │   │   │       ├── fetch_movie_videos_use_case.dart
-    │   │   │   │       ├── fetch_tv_show_credits_use_case.dart
-    │   │   │   │       ├── fetch_tv_show_info_use_case.dart
-    │   │   │   │       └── fetch_tv_show_videos_use_case.dart
-    │   │   │   └── presentation/
-    │   │   │       ├── blocs/
-    │   │   │       │   ├── media_credits_bloc/
-    │   │   │       │   │   ├── bloc.dart
-    │   │   │       │   │   ├── events.dart
-    │   │   │       │   │   └── states.dart
-    │   │   │       │   ├── media_info_bloc/
-    │   │   │       │   │   ├── bloc.dart
-    │   │   │       │   │   ├── events.dart
-    │   │   │       │   │   └── states.dart
-    │   │   │       │   └── media_info_videos_bloc/
-    │   │   │       │       ├── bloc.dart
-    │   │   │       │       ├── events.dart
-    │   │   │       │       └── states.dart
-    │   │   │       ├── components/
-    │   │   │       │   ├── cast_list_widget.dart
-    │   │   │       │   ├── cast_widget.dart
-    │   │   │       │   ├── description_widget.dart
-    │   │   │       │   ├── expanded_header_section.dart
-    │   │   │       │   ├── more_like_this_widget.dart
-    │   │   │       │   └── videos_list.dart
-    │   │   │       └── pages/
-    │   │   │           └── media_info_screen.dart
     │   │   ├── media_player/
-    │   │   │   ├── data/
-    │   │   │   │   ├── data_sources
-    │   │   │   │   ├── models
-    │   │   │   │   └── repository_impl
-    │   │   │   ├── domain/
-    │   │   │   │   ├── entities
-    │   │   │   │   ├── repository
-    │   │   │   │   └── usecases
-    │   │   │   └── presentation/
-    │   │   │       ├── blocs
-    │   │   │       ├── components
-    │   │   │       └── pages/
-    │   │   │           └── media_player.dart
     │   │   ├── reel/
-    │   │   │   ├── data/
-    │   │   │   │   ├── data_sources/
-    │   │   │   │   │   ├── reel_data_source.dart
-    │   │   │   │   │   └── reel_data_source.g.dart
-    │   │   │   │   ├── models
-    │   │   │   │   └── repository_impl/
-    │   │   │   │       └── reel_repository_impl.dart
-    │   │   │   ├── domain/
-    │   │   │   │   ├── entities/
-    │   │   │   │   │   ├── reel_comment_model.dart
-    │   │   │   │   │   ├── reel_comment_model.g.dart
-    │   │   │   │   │   ├── reel_model.dart
-    │   │   │   │   │   └── reel_model.g.dart
-    │   │   │   │   ├── repository/
-    │   │   │   │   │   └── reel_repository.dart
-    │   │   │   │   └── usecases/
-    │   │   │   │       └── fetch_reels_usecase.dart
-    │   │   │   └── presentation/
-    │   │   │       ├── blocs/
-    │   │   │       │   └── reel_bloc/
-    │   │   │       │       ├── bloc.dart
-    │   │   │       │       ├── events.dart
-    │   │   │       │       └── states.dart
-    │   │   │       ├── components/
-    │   │   │       │   ├── comment_bottomsheet.dart
-    │   │   │       │   ├── comment_list_tile.dart
-    │   │   │       │   ├── reel_page_widget.dart
-    │   │   │       │   ├── reel_screen_app_bar.dart
-    │   │   │       │   ├── reel_screen_options.dart
-    │   │   │       │   └── reels_viewer.dart
-    │   │   │       └── pages/
-    │   │   │           └── reel_screen.dart
     │   │   └── splash/
-    │   │       ├── data/
-    │   │       │   ├── data_sources
-    │   │       │   ├── models
-    │   │       │   └── repository_impl
-    │   │       ├── domain/
-    │   │       │   ├── entities
-    │   │       │   ├── repository
-    │   │       │   └── usecases
-    │   │       └── presentation/
-    │   │           ├── bloc
-    │   │           ├── components
-    │   │           └── pages/
-    │   │               └── splash_screen.dart
-    │   └── shared/
-    │       ├── config/
+    |   |
+    │   └── shared/ {Shared code in the app}
+    │       ├── config/ {Contains the theme, routes, constants, assets of the app}
     │       │   ├── assets/
     │       │   │   ├── asset.dart
     │       │   │   ├── dummy.dart
@@ -291,7 +109,7 @@ COMING SOON
     │       │   │   └── routes.dart
     │       │   └── theme/
     │       │       └── theme.dart
-    │       └── core/
+    │       └── core/ {contains the global components, error handling, global managers, models and other util classes}
     │           ├── components/
     │           │   ├── media_vertical_card.dart
     │           │   └── section_heading_widget.dart
