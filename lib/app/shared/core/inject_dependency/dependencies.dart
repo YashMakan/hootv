@@ -14,6 +14,17 @@ import 'package:hootv/app/features/home/presentation/blocs/home_continue_watchin
 import 'package:hootv/app/features/home/presentation/blocs/home_new_on_bloc/bloc.dart';
 import 'package:hootv/app/features/home/presentation/blocs/home_trending_bloc/bloc.dart';
 import 'package:hootv/app/features/home/presentation/blocs/home_tv_shows_bloc/bloc.dart';
+import 'package:hootv/app/features/media_info/data/data_sources/media_info_data_source.dart';
+import 'package:hootv/app/features/media_info/data/repository_impl/media_info_repository_impl.dart';
+import 'package:hootv/app/features/media_info/domain/usecases/fetch_movie_credits_use_case.dart';
+import 'package:hootv/app/features/media_info/domain/usecases/fetch_movie_info_use_case.dart';
+import 'package:hootv/app/features/media_info/domain/usecases/fetch_movie_videos_use_case.dart';
+import 'package:hootv/app/features/media_info/domain/usecases/fetch_tv_show_credits_use_case.dart';
+import 'package:hootv/app/features/media_info/domain/usecases/fetch_tv_show_info_use_case.dart';
+import 'package:hootv/app/features/media_info/domain/usecases/fetch_tv_show_videos_use_case.dart';
+import 'package:hootv/app/features/media_info/presentation/blocs/media_credits_bloc/bloc.dart';
+import 'package:hootv/app/features/media_info/presentation/blocs/media_info_bloc/bloc.dart';
+import 'package:hootv/app/features/media_info/presentation/blocs/media_info_videos_bloc/bloc.dart';
 import 'package:hootv/app/features/reel/data/data_sources/reel_data_source.dart';
 import 'package:hootv/app/features/reel/data/repository_impl/reel_repository_impl.dart';
 import 'package:hootv/app/features/reel/domain/usecases/fetch_reels_usecase.dart';

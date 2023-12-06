@@ -64,11 +64,9 @@ class _ReelScreenState extends State<ReelScreen> {
       backgroundColor: const Color(0xFF0D0D0D),
       body: Stack(
         children: <Widget>[
-          BlocConsumer<ReelBloc, ReelState>(
+          BlocBuilder<ReelBloc, ReelState>(
             bloc: reelBloc,
-            listenWhen: (previous, current) => current is ReelActionState,
             buildWhen: (previous, current) => current is! ReelActionState,
-            listener: (context, state) {},
             builder: (context, state) {
               if (state is ReelLoadedState) {
                 return ReelsViewer(

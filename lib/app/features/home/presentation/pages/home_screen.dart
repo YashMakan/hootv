@@ -17,7 +17,7 @@ import 'package:hootv/app/shared/config/assets/asset.dart';
 import 'package:hootv/app/shared/config/theme/theme.dart';
 import 'package:hootv/app/shared/core/components/section_heading_widget.dart';
 import 'package:hootv/app/shared/core/inject_dependency/dependencies.dart';
-import 'package:hootv/app/shared/core/models/trending_media.dart';
+import 'package:hootv/app/features/home/data/models/trending_media.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -112,14 +112,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 .scrollController,
                             child: Column(
                               children: [
-                                BlocConsumer<HomeTrendingBloc,
+                                BlocBuilder<HomeTrendingBloc,
                                         HomeTrendingState>(
                                     bloc: homeTrendingBloc,
-                                    listenWhen: (previous, current) =>
-                                        current is HomeTrendingActionState,
                                     buildWhen: (previous, current) =>
                                         current is! HomeTrendingActionState,
-                                    listener: (context, state) {},
                                     builder: (context, state) {
                                       if (state is HomeTrendingLoadedState) {
                                         return TrendingMovieList(
@@ -131,14 +128,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(height: 21),
                                 SectionHeadingWidget(
                                   title: "Continue Watching",
-                                  child: BlocConsumer<HomeContinueWatchingBloc,
+                                  child: BlocBuilder<HomeContinueWatchingBloc,
                                           HomeContinueWatchingState>(
                                       bloc: homeContinueWatchingBloc,
-                                      listenWhen: (previous, current) => current
-                                          is HomeContinueWatchingActionState,
                                       buildWhen: (previous, current) => current
                                           is! HomeContinueWatchingActionState,
-                                      listener: (context, state) {},
                                       builder: (context, state) {
                                         if (state
                                             is HomeContinueWatchingLoadedState) {
@@ -151,13 +145,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                       }),
                                 ),
                                 const SizedBox(height: 21),
-                                BlocConsumer<HomeNewOnBloc, HomeNewOnState>(
+                                BlocBuilder<HomeNewOnBloc, HomeNewOnState>(
                                     bloc: homeNewOnBloc,
-                                    listenWhen: (previous, current) =>
-                                        current is HomeNewOnActionState,
                                     buildWhen: (previous, current) =>
                                         current is! HomeNewOnActionState,
-                                    listener: (context, state) {},
                                     builder: (context, state) {
                                       if (state is HomeNewOnLoadedState) {
                                         return NewOnHoo(medias: state.movies);
@@ -168,14 +159,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(height: 21),
                                 SectionHeadingWidget(
                                     title: "TV Shows",
-                                    child: BlocConsumer<HomeTvShowsBloc,
+                                    child: BlocBuilder<HomeTvShowsBloc,
                                             HomeTvShowsState>(
                                         bloc: homeTvShowsBloc,
-                                        listenWhen: (previous, current) =>
-                                            current is HomeTvShowsActionState,
                                         buildWhen: (previous, current) =>
                                             current is! HomeTvShowsActionState,
-                                        listener: (context, state) {},
                                         builder: (context, state) {
                                           if (state is HomeTvShowsLoadedState) {
                                             return TvShowList(

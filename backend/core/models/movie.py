@@ -1,3 +1,4 @@
+from pydantic import BaseModel
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -17,3 +18,7 @@ class Movie(Base):
             title=imdb_api_data.get("title"),
             description=imdb_api_data.get("description")
         )
+
+
+class MovieIdRequest(BaseModel):
+    movie_id: int

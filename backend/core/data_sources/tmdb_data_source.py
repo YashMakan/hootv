@@ -31,7 +31,11 @@ class TmdbDataSource:
 
     def fetch_movie_videos(self, movie_id: int):
         response = self.api.request(f'movie/{movie_id}/videos', method='GET', params={'api_key': api_key})
-        return dict(response)
+        return list(map(lambda x: dict(x), response['results']))
+
+    def fetch_movie_credits(self, movie_id: int):
+        response = self.api.request(f'movie/{movie_id}/credits', method='GET', params={'api_key': api_key})
+        return list(map(lambda x: dict(x), response['cast']))
 
     def fetch_trending_tv_shows(self):
         response = self.api.request(
@@ -47,6 +51,10 @@ class TmdbDataSource:
         )
         results = list(map(lambda x: dict(x), response['results']))
         return list(filter(lambda item: item.get("media_type") != "person", results))
+
+    def fetch_tv_show_info(self, show_id: int):
+        response = self.api.request(f'tv/{show_id}', method='GET', params={'api_key': api_key})
+        return dict(response)
 
     def fetch_all_trending_media(self, time_window='day'):
         response = self.api.request(f'trending/all/{time_window}', method='GET',

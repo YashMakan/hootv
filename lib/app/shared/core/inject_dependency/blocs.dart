@@ -10,4 +10,8 @@ Future<void> injectBlocs() async {
 
   sl.registerSingleton(DiscoverBloc(sl()));
   sl.registerSingleton(DiscoverSearchBloc(sl()));
+
+  sl.registerSingleton(MediaInfoBloc(sl(), sl()));
+  sl.registerSingleton(MediaInfoVideosBloc(sl(), sl()));
+  sl.registerSingleton(MediaCreditsBloc(sl(), sl()));
 }

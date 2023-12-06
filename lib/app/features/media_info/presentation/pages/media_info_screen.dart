@@ -1,28 +1,56 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hootv/app/features/media_info/presentation/blocs/media_credits_bloc/bloc.dart';
+import 'package:hootv/app/features/media_info/presentation/blocs/media_info_bloc/bloc.dart';
+import 'package:hootv/app/features/media_info/presentation/blocs/media_info_videos_bloc/bloc.dart';
+import 'package:hootv/app/features/media_info/presentation/components/cast_list_widget.dart';
 import 'package:hootv/app/features/media_info/presentation/components/cast_widget.dart';
+import 'package:hootv/app/features/media_info/presentation/components/description_widget.dart';
+import 'package:hootv/app/features/media_info/presentation/components/expanded_header_section.dart';
 import 'package:hootv/app/features/media_info/presentation/components/more_like_this_widget.dart';
-import 'package:hootv/app/features/media_player/presentation/pages/media_player.dart';
 import 'package:hootv/app/shared/config/assets/asset.dart';
-import 'package:hootv/app/shared/config/constants/colors.dart';
-import 'package:hootv/app/shared/config/constants/extensions.dart';
 import 'package:hootv/app/shared/config/theme/theme.dart';
+import 'package:hootv/app/shared/core/inject_dependency/dependencies.dart';
 import 'package:hootv/app/shared/core/models/media_model.dart';
-import 'package:readmore/readmore.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:hootv/app/shared/core/models/movie_model.dart';
+import 'package:hootv/app/shared/core/models/tv_show_model.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class MediaInfoScreen extends StatelessWidget {
+class MediaInfoScreen extends StatefulWidget {
   const MediaInfoScreen({super.key});
 
-  bool isAdultMedia(MediaModel media) => media.adult ?? false;
+  @override
+  State<MediaInfoScreen> createState() => _MediaInfoScreenState();
+}
+
+class _MediaInfoScreenState extends State<MediaInfoScreen> {
+    final videoHeight = 140.0;
+  final mediaInfoBloc = sl<MediaInfoBloc>();
+  final mediaInfoVideosBloc = sl<MediaInfoVideosBloc>();
+  final mediaCreditsBloc = sl<MediaCreditsBloc>();
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final media = ModalRoute.of(context)?.settings.arguments as MediaModel;
+      if (media.mediaType == 'tv') {
+        mediaInfoBloc
+            .add(FetchMediaInfoEvent(tvShowModel: media as TvShowModel));
+        // mediaInfoVideosBloc.add(FetchMediaVideosEvent(tvShowModel: media));
+        mediaCreditsBloc.add(FetchMediaCreditsEvent(tvShowModel: media));
+      } else {
+        mediaInfoBloc.add(FetchMediaInfoEvent(movieModel: media as MovieModel));
+        // mediaInfoVideosBloc.add(FetchMediaVideosEvent(movieModel: media));
+        mediaCreditsBloc.add(FetchMediaCreditsEvent(movieModel: media));
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     final media = ModalRoute.of(context)?.settings.arguments as MediaModel;
-    const spacing = 6.0;
-    const castHeight = 100.0;
-    const videoHeight = 140.0;
+
     return Scaffold(
       backgroundColor: const Color(0xFF0D0D0D),
       body: Stack(
@@ -31,107 +59,40 @@ class MediaInfoScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 100.w,
-                  height: 60.h,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: CachedNetworkImageProvider(
-                                  media.posterPathImage ?? ''))
-                          .ifNotNull(media.posterPathImage)),
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          height: 20.h,
-                          width: 100.w,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                Colors.transparent,
-                                const Color(0xFF0D0D0D).withOpacity(0.3),
-                                const Color(0xFF0D0D0D)
-                              ])),
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Positioned(
-                                bottom: -20,
-                                left: 20,
-                                child: Row(
-                                  children: [
-                                    ElevatedButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      const TorrentWebView(
-                                                          magnetLink:
-                                                              'https://webtorrent.io/torrents/sintel.torrent')));
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor: Colors.white,
-                                            padding: EdgeInsets.zero,
-                                            fixedSize:
-                                                const Size.fromWidth(150),
-                                            foregroundColor: Colors.black),
-                                        child: Center(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              const Icon(
-                                                Icons.play_arrow_rounded,
-                                                size: 42,
-                                              ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                "Play Now",
-                                                style: context.titleMedium,
-                                              )
-                                            ],
-                                          ),
-                                        )),
-                                    const SizedBox(width: 16),
-                                    ElevatedButton(
-                                        onPressed: () {},
-                                        style: ElevatedButton.styleFrom(
-                                            backgroundColor:
-                                                Colors.transparent,
-                                            elevation: 0,
-                                            foregroundColor: Colors.white,
-                                            padding: EdgeInsets.zero,
-                                            fixedSize:
-                                                const Size.fromWidth(150),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                side: const BorderSide(
-                                                    color: Colors.white))),
-                                        child: const Center(
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(Icons.add),
-                                              Text("My List")
-                                            ],
-                                          ),
-                                        ))
-                                  ],
-                                ),
-                              ),
-                            ],
+                BlocBuilder<MediaInfoVideosBloc, MediaInfoVideosState>(
+                  bloc: mediaInfoVideosBloc,
+                  builder: (context, state) {
+                    YoutubePlayerController getController(videos) =>
+                        YoutubePlayerController(
+                          initialVideoId: videos
+                              .where((element) =>
+                                  element.official &&
+                                  element.site.toLowerCase() == 'youtube' &&
+                                  (element.type == 'Trailer' ||
+                                      element.type == 'Teaser'))
+                              .last
+                              .key,
+                          flags: const YoutubePlayerFlags(
+                            autoPlay: true,
+                            mute: false,
                           ),
-                        ),
-                      )
-                    ],
-                  ),
+                        );
+                    if (state is MovieVideosLoadedState) {
+                      final controller = getController(state.videos);
+                      return ExpandedHeaderSection(
+                          media: media,
+                          videos: state.videos,
+                          controller: controller);
+                    } else if (state is TvShowVideosLoadedState) {
+                      final controller = getController(state.videos);
+                      return ExpandedHeaderSection(
+                          media: media,
+                          videos: state.videos,
+                          controller: controller);
+                    } else {
+                      return ExpandedHeaderSection(media: media);
+                    }
+                  },
                 ),
                 const SizedBox(height: 20 + 32),
                 Padding(
@@ -139,59 +100,19 @@ class MediaInfoScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AutoSizeText(
-                        media.title ?? media.name ?? '--',
-                        maxLines: 2,
-                        minFontSize: 22,
-                        maxFontSize: 32,
-                        wrapWords: false,
-                        style: context.displayMedium?.ultra?.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            shadows: [
-                              const BoxShadow(
-                                  color: Colors.black54, blurRadius: 20)
-                            ]),
-                      ),
-                      const SizedBox(height: 8),
-                      DefaultTextStyle(
-                        style: const TextStyle(color: Colors.white60),
-                        child: Row(
-                          children: [
-                            if (isAdultMedia(media)) ...[
-                              Container(
-                                padding: const EdgeInsets.all(2),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(2),
-                                    border: Border.all(color: Colors.white)),
-                                child: const Text('A'),
-                              ),
-                              const SizedBox(width: spacing),
-                              const Text('•'),
-                              const SizedBox(width: spacing),
-                            ],
-                            const Text('1hr 28min'),
-                            const SizedBox(width: spacing),
-                            const Text('•'),
-                            const SizedBox(width: spacing),
-                            const Text('Apr'),
-                            const SizedBox(width: spacing),
-                            const Text('•'),
-                            const SizedBox(width: spacing),
-                            Text(
-                                "⭐ ${media.voteAverage?.toStringAsFixed(2) ?? '0'} "
-                                "(${media.voteCount?.toString() ?? '0'})"),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      ReadMoreText(
-                        media.overview ?? '',
-                        trimLength: 100,
-                        moreStyle: const TextStyle(color: CustomColors.primary),
-                        lessStyle: const TextStyle(color: CustomColors.primary),
-                        style: context.titleMedium
-                            ?.copyWith(color: Colors.white.withOpacity(0.8)),
+                      BlocBuilder<MediaInfoBloc, MediaInfoState>(
+                        bloc: mediaInfoBloc,
+                        builder: (context, state) {
+                          if (state is MovieInfoLoadedState) {
+                            return DescriptionWidget(
+                                media: media, movieInfo: state.mediaInfo);
+                          } else if (state is TvShowInfoLoadedState) {
+                            return DescriptionWidget(
+                                media: media, tvShowInfo: state.tvShowInfo);
+                          } else {
+                            return DescriptionWidget(media: media);
+                          }
+                        },
                       ),
                       const SizedBox(height: 24),
                       Text(
@@ -200,14 +121,15 @@ class MediaInfoScreen extends StatelessWidget {
                             ?.copyWith(color: Colors.white, letterSpacing: 1.4),
                       ),
                       const SizedBox(height: 10),
-                      SizedBox(
-                        height: castHeight,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: 8,
-                          itemBuilder: (context, index) => const CastWidget(),
-                        ),
+                      BlocBuilder(
+                        bloc: mediaCreditsBloc,
+                        builder: (context, state) {
+                          if(state is MediaCreditsLoadedState) {
+                            return CastListWidget(credits: state.credits);
+                          } else {
+                            return const CastListWidget();
+                          }
+                        }
                       ),
                       const SizedBox(height: 24),
                       Text(
@@ -222,7 +144,8 @@ class MediaInfoScreen extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: 8,
-                          itemBuilder: (context, index) => const MoreLikeThisWidget(),
+                          itemBuilder: (context, index) =>
+                              const MoreLikeThisWidget(),
                         ),
                       ),
                       const SizedBox(height: 24),
@@ -238,7 +161,8 @@ class MediaInfoScreen extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: 8,
-                          itemBuilder: (context, index) => const MoreLikeThisWidget(),
+                          itemBuilder: (context, index) =>
+                              const MoreLikeThisWidget(),
                         ),
                       ),
                       const SizedBox(height: 24),

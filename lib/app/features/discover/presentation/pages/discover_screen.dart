@@ -59,9 +59,8 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             filter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
             child: Container(color: Colors.transparent),
           ),
-          BlocConsumer(
+          BlocBuilder<DiscoverBloc, DiscoverState>(
               bloc: discoverBloc,
-              listenWhen: (previous, current) => current is DiscoverActionState,
               buildWhen: (previous, current) => current is! DiscoverActionState,
               builder: (context, state) {
                 if (state is DiscoverLoadedState) {
@@ -74,7 +73,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       scrollController: widget.scrollController);
                 }
               },
-              listener: (context, state) {}),
+          ),
           SafeArea(
             child: FloatingSearchBar(
               hintStyle: context.titleMedium,

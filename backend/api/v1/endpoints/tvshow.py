@@ -4,6 +4,7 @@ from fastapi import APIRouter
 
 from core.data_sources.ezflix_data_source import EzflixDaraSource
 from core.data_sources.tmdb_data_source import TmdbDataSource
+from core.models.tv_show import TvShowIdRequest
 
 router = APIRouter(prefix='/tv-show')
 movieSource = TmdbDataSource
@@ -12,6 +13,18 @@ movieSource = TmdbDataSource
 @router.get("/trending")
 async def movie_trending():
     shows = movieSource().fetch_trending_tv_shows()
+    return {"result": shows}
+
+
+@router.post("/info")
+async def tv_show_info(request: TvShowIdRequest):
+    shows = movieSource().fetch_tv_show_info(request.tv_show_id)
+    return {"result": shows}
+
+
+@router.post("/info")
+async def fetch_tv_show_videos(request: TvShowIdRequest):
+    shows = movieSource().fetch_tv_show_info(request.tv_show_id)
     return {"result": shows}
 
 #

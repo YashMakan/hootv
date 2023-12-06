@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'movie_model.dart';
+import 'package:hootv/app/shared/core/models/movie_model.dart';
 
 class TrendingMovie {
   final String image;
