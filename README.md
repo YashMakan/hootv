@@ -1,8 +1,8 @@
 # HooTv: Movies & Tv Shows Streaming
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Flutter](https://img.shields.io/badge/flutter-%5E2.0.0-blue.svg)](https://flutter.dev)
-[![Dart](https://img.shields.io/badge/dart-%5E2.12.0-blue.svg)](https://dart.dev)
+[![Flutter](https://img.shields.io/badge/flutter-%5E3.10.6-blue.svg)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/dart-%5E3.0.6-blue.svg)](https://dart.dev)
 
 ## Features
 1. Cross Platform application (Android and iOS)
