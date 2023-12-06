@@ -18,6 +18,7 @@
 11. UI and Logic separation.
 12. `Firebase` integration with Authentication(Google, Phone and Facebook)
 13. `WebView` integration using `inAppWebView`.
+14. `Shimmer` animations for every api component.
 
 ## ScreenShots
 
