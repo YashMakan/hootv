@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_custom_tab_bar/library.dart';
+import 'package:hootv/app/features/home/data/models/trending_media.dart';
 import 'package:hootv/app/features/home/presentation/blocs/home_continue_watching_bloc/bloc.dart';
 import 'package:hootv/app/features/home/presentation/blocs/home_new_on_bloc/bloc.dart';
 import 'package:hootv/app/features/home/presentation/blocs/home_trending_bloc/bloc.dart';
@@ -17,7 +18,6 @@ import 'package:hootv/app/shared/config/assets/asset.dart';
 import 'package:hootv/app/shared/config/theme/theme.dart';
 import 'package:hootv/app/shared/core/components/section_heading_widget.dart';
 import 'package:hootv/app/shared/core/inject_dependency/dependencies.dart';
-import 'package:hootv/app/features/home/data/models/trending_media.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,9 +25,7 @@ class HomeScreen extends StatefulWidget {
   final List<String> tabs;
 
   const HomeScreen(
-      {super.key,
-      required this.scrollController,
-      required this.tabs});
+      {super.key, required this.scrollController, required this.tabs});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -74,7 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D0D),
       body: Stack(
         children: <Widget>[
           Container(
@@ -108,8 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: pageCount,
                         itemBuilder: (context, index) {
                           return SingleChildScrollView(
-                            controller: widget
-                                .scrollController,
+                            controller: widget.scrollController,
                             child: Column(
                               children: [
                                 BlocBuilder<HomeTrendingBloc,

@@ -7,7 +7,6 @@ import 'package:hootv/app/features/reel/domain/entities/reel_model.dart';
 import 'package:hootv/app/features/reel/domain/usecases/fetch_reels_usecase.dart';
 
 part 'events.dart';
-
 part 'states.dart';
 
 class ReelBloc extends Bloc<ReelEvent, ReelState> {

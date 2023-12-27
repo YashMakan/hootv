@@ -7,14 +7,12 @@ import 'package:hootv/app/features/home/domain/usecases/fetch_new_on_movies_usec
 import 'package:hootv/app/shared/core/models/movie_model.dart';
 
 part 'events.dart';
-
 part 'states.dart';
 
 class HomeNewOnBloc extends Bloc<HomeNewOnEvent, HomeNewOnState> {
   final FetchNewOnMoviesUseCase fetchNewOnMoviesUseCase;
 
-  HomeNewOnBloc(this.fetchNewOnMoviesUseCase)
-      : super(HomeNewOnInitialState()) {
+  HomeNewOnBloc(this.fetchNewOnMoviesUseCase) : super(HomeNewOnInitialState()) {
     on<FetchNewOnMediasEvent>(fetchNewOnMediasEvent);
 
     on<OnNewOnMediaClickedEvent>(onNewOnMediaClickedEvent);

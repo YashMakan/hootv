@@ -4,7 +4,6 @@ import 'package:hootv/app/features/media_info/presentation/blocs/media_credits_b
 import 'package:hootv/app/features/media_info/presentation/blocs/media_info_bloc/bloc.dart';
 import 'package:hootv/app/features/media_info/presentation/blocs/media_info_videos_bloc/bloc.dart';
 import 'package:hootv/app/features/media_info/presentation/components/cast_list_widget.dart';
-import 'package:hootv/app/features/media_info/presentation/components/cast_widget.dart';
 import 'package:hootv/app/features/media_info/presentation/components/description_widget.dart';
 import 'package:hootv/app/features/media_info/presentation/components/expanded_header_section.dart';
 import 'package:hootv/app/features/media_info/presentation/components/more_like_this_widget.dart';
@@ -24,7 +23,7 @@ class MediaInfoScreen extends StatefulWidget {
 }
 
 class _MediaInfoScreenState extends State<MediaInfoScreen> {
-    final videoHeight = 140.0;
+  final videoHeight = 140.0;
   final mediaInfoBloc = sl<MediaInfoBloc>();
   final mediaInfoVideosBloc = sl<MediaInfoVideosBloc>();
   final mediaCreditsBloc = sl<MediaCreditsBloc>();
@@ -52,7 +51,6 @@ class _MediaInfoScreenState extends State<MediaInfoScreen> {
     final media = ModalRoute.of(context)?.settings.arguments as MediaModel;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D0D),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -122,15 +120,14 @@ class _MediaInfoScreenState extends State<MediaInfoScreen> {
                       ),
                       const SizedBox(height: 10),
                       BlocBuilder(
-                        bloc: mediaCreditsBloc,
-                        builder: (context, state) {
-                          if(state is MediaCreditsLoadedState) {
-                            return CastListWidget(credits: state.credits);
-                          } else {
-                            return const CastListWidget();
-                          }
-                        }
-                      ),
+                          bloc: mediaCreditsBloc,
+                          builder: (context, state) {
+                            if (state is MediaCreditsLoadedState) {
+                              return CastListWidget(credits: state.credits);
+                            } else {
+                              return const CastListWidget();
+                            }
+                          }),
                       const SizedBox(height: 24),
                       Text(
                         'Trailer & more',

@@ -1,4 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hootv/app/shared/config/constants/colors.dart';
+
+class AppTheme {
+  static ThemeData appTheme() => ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: CustomColors.primary),
+        useMaterial3: true,
+        scaffoldBackgroundColor: CustomColors.background,
+        // adding more properties here in constructor if required
+      );
+}
 
 extension UIThemeExtension on BuildContext {
   TextStyle? get titleSmall => Theme.of(this).textTheme.titleSmall;
@@ -34,6 +44,4 @@ extension UIThemeExtension on BuildContext {
 
 extension TextStyleExtension on TextStyle {
   TextStyle? get ultra => copyWith(fontFamily: 'MonumentExtended');
-
-  TextStyle? get wh => copyWith(color: Colors.white);
 }

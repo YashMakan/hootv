@@ -17,8 +17,8 @@ class ContinueWatchingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        if(movie != null) {
+      onTap: () {
+        if (movie != null) {
           Navigator.pushNamed(context, AppRoutes.mediaInfoScreen,
               arguments: movie!);
         }
@@ -28,10 +28,11 @@ class ContinueWatchingCard extends StatelessWidget {
         height: 180,
         margin: const EdgeInsets.symmetric(horizontal: 4),
         decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.3),
             borderRadius: BorderRadius.circular(16),
             image: DecorationImage(
-                    image: CachedNetworkImageProvider(movie?.backdropPathImage ?? ''),
+                    image: CachedNetworkImageProvider(
+                        movie?.backdropPathImage ?? ''),
                     fit: BoxFit.fitWidth)
                 .ifNotNull(movie?.backdropPathImage)),
         child: Align(

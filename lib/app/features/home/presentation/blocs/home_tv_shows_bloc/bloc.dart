@@ -7,7 +7,6 @@ import 'package:hootv/app/features/home/domain/usecases/fetch_trending_tv_shows_
 import 'package:hootv/app/shared/core/models/tv_show_model.dart';
 
 part 'events.dart';
-
 part 'states.dart';
 
 class HomeTvShowsBloc extends Bloc<HomeTvShowsEvent, HomeTvShowsState> {

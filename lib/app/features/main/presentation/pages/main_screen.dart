@@ -43,7 +43,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D0D),
       bottomNavigationBar: Hidable(
         controller: homeScrollControllers[currentHomeIndex],
         preferredWidgetSize: Size.fromHeight(8.h),

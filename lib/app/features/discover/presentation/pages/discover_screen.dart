@@ -34,7 +34,6 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D0D),
       body: Stack(
         children: [
           Align(
@@ -60,19 +59,18 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             child: Container(color: Colors.transparent),
           ),
           BlocBuilder<DiscoverBloc, DiscoverState>(
-              bloc: discoverBloc,
-              buildWhen: (previous, current) => current is! DiscoverActionState,
-              builder: (context, state) {
-                if (state is DiscoverLoadedState) {
-                  return DiscoverGrid(
-                    medias: state.medias,
-                    scrollController: widget.scrollController,
-                  );
-                } else {
-                  return DiscoverGrid(
-                      scrollController: widget.scrollController);
-                }
-              },
+            bloc: discoverBloc,
+            buildWhen: (previous, current) => current is! DiscoverActionState,
+            builder: (context, state) {
+              if (state is DiscoverLoadedState) {
+                return DiscoverGrid(
+                  medias: state.medias,
+                  scrollController: widget.scrollController,
+                );
+              } else {
+                return DiscoverGrid(scrollController: widget.scrollController);
+              }
+            },
           ),
           SafeArea(
             child: FloatingSearchBar(
@@ -87,7 +85,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               clearQueryOnClose: true,
               debounceDelay: const Duration(milliseconds: 800),
               initiallyHidden: false,
-              onFocusChanged: (focus){
+              onFocusChanged: (focus) {
                 discoverSearchBloc.add(ResetMediasEvent());
               },
               onQueryChanged: (value) {

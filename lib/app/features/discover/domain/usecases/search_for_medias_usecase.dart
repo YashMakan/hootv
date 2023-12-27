@@ -8,8 +8,7 @@ class SearchForMediasUseCase {
 
   SearchForMediasUseCase(this.discoverRepository);
 
-  Future<Either<ErrorState, List<MediaModel>>> call(
-      String query) async {
+  Future<Either<ErrorState, List<MediaModel>>> call(String query) async {
     return await discoverRepository.searchForMedias(query);
   }
 }

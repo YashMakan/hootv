@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'last_episode_to_air.g.dart';
 
 @JsonSerializable()

@@ -73,7 +73,7 @@ class DescriptionWidget extends StatelessWidget {
                   const Text('•'),
                   const SizedBox(width: spacing),
                 ],
-                if(runtime != null)...[
+                if (runtime != null) ...[
                   Text('${runtime! ~/ 60}hr ${runtime! % 60}min'),
                   const SizedBox(width: spacing),
                   const Text('•'),

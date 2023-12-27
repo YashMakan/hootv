@@ -7,21 +7,17 @@ import 'package:hootv/app/features/discover/domain/usecases/fetch_trending_media
 import 'package:hootv/app/shared/core/models/media_model.dart';
 
 part 'events.dart';
-
 part 'states.dart';
 
-class DiscoverBloc
-    extends Bloc<DiscoverEvent, DiscoverState> {
+class DiscoverBloc extends Bloc<DiscoverEvent, DiscoverState> {
   final FetchTrendingMediaUseCase fetchTrendingMediaUseCase;
 
-  DiscoverBloc(this.fetchTrendingMediaUseCase)
-      : super(DiscoverInitialState()) {
+  DiscoverBloc(this.fetchTrendingMediaUseCase) : super(DiscoverInitialState()) {
     on<FetchTrendingMediaEvent>(fetchTrendingMediaEvent);
   }
 
   Future<FutureOr<void>> fetchTrendingMediaEvent(
-      FetchTrendingMediaEvent event,
-      Emitter<DiscoverState> emit) async {
+      FetchTrendingMediaEvent event, Emitter<DiscoverState> emit) async {
     emit(DiscoverLoadingState());
     final result = await fetchTrendingMediaUseCase({});
     result.fold((l) {

@@ -20,5 +20,4 @@ class DiscoverLoadedState extends DiscoverState {
   const DiscoverLoadedState(this.medias);
 }
 
-class DiscoverErrorActionState
-    extends DiscoverActionState {}
+class DiscoverErrorActionState extends DiscoverActionState {}

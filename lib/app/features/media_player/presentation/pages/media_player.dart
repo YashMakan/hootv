@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -14,6 +15,7 @@ class TorrentWebView extends StatefulWidget {
 
 class _TorrentWebViewState extends State<TorrentWebView> {
   InAppWebViewController? _webViewController;
+
   @override
   void dispose() {
     SystemChrome.setPreferredOrientations([
@@ -24,6 +26,7 @@ class _TorrentWebViewState extends State<TorrentWebView> {
     ]);
     super.dispose();
   }
+
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
@@ -32,6 +35,7 @@ class _TorrentWebViewState extends State<TorrentWebView> {
     ]);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     const htmlContent = '''<!DOCTYPE html>
@@ -103,7 +107,8 @@ class _TorrentWebViewState extends State<TorrentWebView> {
 </html>''';
 
     return InAppWebView(
-      initialData: InAppWebViewInitialData(data: htmlContent, mimeType: 'text/html'),
+      initialData:
+          InAppWebViewInitialData(data: htmlContent, mimeType: 'text/html'),
       onWebViewCreated: (controller) {
         _webViewController = controller;
       },
@@ -111,8 +116,7 @@ class _TorrentWebViewState extends State<TorrentWebView> {
         debugPrint(m.message);
       },
       initialOptions: InAppWebViewGroupOptions(
-        crossPlatform: InAppWebViewOptions(
-        ),
+        crossPlatform: InAppWebViewOptions(),
       ),
       onLoadStop: (controller, url) {
         // Inject JavaScript code to start downloading the torrent
@@ -123,7 +127,8 @@ class _TorrentWebViewState extends State<TorrentWebView> {
 
   Future<void> _loadTorrent(String magnetLink) async {
     if (_webViewController != null) {
-      await _webViewController!.evaluateJavascript(source: 'run("$magnetLink");');
+      await _webViewController!
+          .evaluateJavascript(source: 'run("$magnetLink");');
     }
   }
 }

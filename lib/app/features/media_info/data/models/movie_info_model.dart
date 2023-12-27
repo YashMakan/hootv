@@ -116,6 +116,3 @@ class MovieInfoModel {
 
   Map<String, dynamic> toJson() => _$MovieInfoModelToJson(this);
 }
-
-
-

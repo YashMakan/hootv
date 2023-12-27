@@ -23,7 +23,7 @@ class _DiscoverSearchAreaState extends State<DiscoverSearchArea> {
   Widget build(BuildContext context) {
     return Container(
       height: 78.h,
-      color: const Color(0xFF0D0D0D),
+      color: CustomColors.background,
       child: BlocBuilder<DiscoverSearchBloc, DiscoverSearchState>(
         bloc: sl<DiscoverSearchBloc>(),
         builder: (context, state) {

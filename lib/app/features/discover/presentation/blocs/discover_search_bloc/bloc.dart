@@ -7,7 +7,6 @@ import 'package:hootv/app/features/discover/domain/usecases/search_for_medias_us
 import 'package:hootv/app/shared/core/models/media_model.dart';
 
 part 'events.dart';
-
 part 'states.dart';
 
 class DiscoverSearchBloc

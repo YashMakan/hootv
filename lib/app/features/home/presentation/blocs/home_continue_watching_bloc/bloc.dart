@@ -7,7 +7,6 @@ import 'package:hootv/app/features/home/domain/usecases/fetch_trending_movies_us
 import 'package:hootv/app/shared/core/models/movie_model.dart';
 
 part 'events.dart';
-
 part 'states.dart';
 
 class HomeContinueWatchingBloc

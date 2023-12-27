@@ -6,8 +6,10 @@ import 'package:hootv/app/shared/core/models/tv_show_model.dart';
 abstract class HomeRepository {
   Future<Either<ErrorState, List<MovieModel>>> fetchTrendingMovies(
       Map<String, dynamic> data);
+
   Future<Either<ErrorState, List<MovieModel>>> fetchNewOnMoviesUseCase(
       Map<String, dynamic> data);
+
   Future<Either<ErrorState, List<TvShowModel>>> fetchTrendingTvShows(
       Map<String, dynamic> data);
 }

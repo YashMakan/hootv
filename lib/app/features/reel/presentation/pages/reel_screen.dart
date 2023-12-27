@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hootv/app/features/reel/domain/entities/reel_model.dart';
 import 'package:hootv/app/features/reel/presentation/blocs/reel_bloc/bloc.dart';
 import 'package:hootv/app/features/reel/presentation/components/reel_screen_app_bar.dart';
 import 'package:hootv/app/features/reel/presentation/components/reels_viewer.dart';
@@ -61,7 +60,6 @@ class _ReelScreenState extends State<ReelScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0D0D0D),
       body: Stack(
         children: <Widget>[
           BlocBuilder<ReelBloc, ReelState>(

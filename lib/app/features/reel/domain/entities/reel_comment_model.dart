@@ -18,7 +18,8 @@ class ReelCommentModel {
     required this.commentTime,
   });
 
-  factory ReelCommentModel.fromJson(Map<String, dynamic> json) => _$ReelCommentModelFromJson(json);
+  factory ReelCommentModel.fromJson(Map<String, dynamic> json) =>
+      _$ReelCommentModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ReelCommentModelToJson(this);
 }

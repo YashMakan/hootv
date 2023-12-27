@@ -12,25 +12,23 @@ import 'package:hootv/app/shared/core/models/movie_model.dart';
 import 'package:hootv/app/shared/core/models/tv_show_model.dart';
 
 part 'events.dart';
-
 part 'states.dart';
 
-class MediaCreditsBloc
-    extends Bloc<MediaCreditsEvent, MediaCreditsState> {
+class MediaCreditsBloc extends Bloc<MediaCreditsEvent, MediaCreditsState> {
   final FetchMovieCreditsUseCase fetchMovieCreditsUseCase;
   final FetchTvShowCreditsUseCase fetchTvShowCreditsUseCase;
 
-  MediaCreditsBloc(this.fetchMovieCreditsUseCase, this.fetchTvShowCreditsUseCase)
+  MediaCreditsBloc(
+      this.fetchMovieCreditsUseCase, this.fetchTvShowCreditsUseCase)
       : super(MediaCreditsInitialState()) {
     on<FetchMediaCreditsEvent>(fetchMediaCreditsEvent);
   }
 
   Future<FutureOr<void>> fetchMediaCreditsEvent(
-      FetchMediaCreditsEvent event,
-      Emitter<MediaCreditsState> emit) async {
+      FetchMediaCreditsEvent event, Emitter<MediaCreditsState> emit) async {
     emit(MediaCreditsLoadingState());
     Either<ErrorState, List<CreditsModel>> result;
-    if(event.movieModel != null) {
+    if (event.movieModel != null) {
       result = await fetchMovieCreditsUseCase(event.movieModel!.id);
     } else {
       result = await fetchTvShowCreditsUseCase(event.tvShowModel!.id);

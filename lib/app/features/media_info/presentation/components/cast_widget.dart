@@ -21,13 +21,14 @@ class CastWidget extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 42,
-              backgroundImage:
-                  isApiLoaded ? NetworkImage(credit!.profilePathImage ?? "") : null,
+              backgroundImage: isApiLoaded
+                  ? NetworkImage(credit!.profilePathImage ?? "")
+                  : null,
               onBackgroundImageError: isApiLoaded ? (obj, _) {} : null,
               backgroundColor: Colors.grey.withOpacity(0.3),
             ).toShimmer(!isApiLoaded),
             const SizedBox(height: 8),
-            if (isApiLoaded)...[
+            if (isApiLoaded) ...[
               SizedBox(
                 width: (42 * 2.2),
                 child: Center(
@@ -52,8 +53,7 @@ class CastWidget extends StatelessWidget {
                   ),
                 ),
               )
-            ]
-            else
+            ] else
               Container(
                 width: 32,
                 height: 16,

@@ -20,10 +20,11 @@ class MoreLikeThisWidget extends StatelessWidget {
       height: 180,
       margin: const EdgeInsets.symmetric(horizontal: 4),
       decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.3),
+          color: Colors.grey.withOpacity(0.3),
           borderRadius: BorderRadius.circular(16),
           image: DecorationImage(
-                  image: CachedNetworkImageProvider(movie?.backdropPathImage ?? ''),
+                  image: CachedNetworkImageProvider(
+                      movie?.backdropPathImage ?? ''),
                   fit: BoxFit.fitWidth)
               .ifNotNull(movie?.backdropPathImage)),
       child: Align(

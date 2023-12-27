@@ -9,11 +9,12 @@ class ReelRepositoryImpl extends ReelRepository {
   final ReelDataSource reelDataSource;
 
   ReelRepositoryImpl(this.reelDataSource);
+
   @override
   Future<Either<ErrorState, List<ReelModel>>> fetchReels(
       Map<String, dynamic> data) async {
-    return await ErrorHandler.callApi(
-            () => reelDataSource.fetchReels(data), (result) {
+    return await ErrorHandler.callApi(() => reelDataSource.fetchReels(data),
+        (result) {
       final res = (result['result'] as List<dynamic>);
       return res.map((e) => ReelModel.fromJson(e)).toList();
     });

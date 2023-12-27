@@ -15,6 +15,5 @@ abstract class HomeDataSource {
       @Body() Map<String, dynamic> data);
 
   @GET('/v1/tv-show/trending')
-  Future<HttpResponse> fetchTrendingTvShows(
-      @Body() Map<String, dynamic> data);
+  Future<HttpResponse> fetchTrendingTvShows(@Body() Map<String, dynamic> data);
 }

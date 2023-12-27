@@ -20,5 +20,4 @@ class DiscoverSearchLoadedState extends DiscoverSearchState {
   const DiscoverSearchLoadedState(this.medias);
 }
 
-class DiscoverSearchErrorActionState
-    extends DiscoverSearchActionState {}
+class DiscoverSearchErrorActionState extends DiscoverSearchActionState {}

@@ -58,7 +58,7 @@
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       backgroundColor: const Color(0xFF0D0D0D),
+//       backgroundColor: const CustomColors.background,
 //       body: Stack(
 //         children: <Widget>[
 //           Container(

@@ -18,7 +18,8 @@ class ContinueWatchingList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         child: isLoading
             ? Row(
-                children: List.generate(4, (index) => const ContinueWatchingCard()),
+                children:
+                    List.generate(4, (index) => const ContinueWatchingCard()),
               )
             : Row(
                 children: List.generate(movies!.length,
